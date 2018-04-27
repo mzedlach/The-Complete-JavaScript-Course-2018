@@ -1,6 +1,6 @@
-/*---------*/
-//Functions// 
-/*---------*/
+/*---------------*/
+//---Functions---// 
+/*---------------*/
 /*
 function calculateAge(yearOfBirth) {
     var age = 2016 - yearOfBirth;
@@ -51,9 +51,9 @@ if (x ====5) {
 }
 */
 
-/*------*/
-//Arrays//
-/*------*/
+/*----------------*/
+//-----Arrays-----//
+/*----------------*/
 /*
 var names = ['John', 'Jane', 'Mark'];
 var years = new Array(1990, 1969, 1948);
@@ -75,9 +75,9 @@ if (john.indexOf('teacher') === -1) {
 }
 */
 
-/*-------*/
-//Objects//
-/*-------*/
+/*-----------------*/
+//-----Objects-----//
+/*-----------------*/
 /*
 var john = {
     name: 'John',
@@ -108,9 +108,9 @@ jane['isMarried'] = true;
 console.log(jane);
 */
 
-/*-------------------*/
-//Objects and Methods//
-/*-------------------*/
+/*-------------------------*/
+//---Objects and Methods---//
+/*-------------------------*/
 
 /* v 1.0
 var john = {
@@ -137,7 +137,7 @@ console.log(john);
 */
 
 
-// v 2.0
+/* v 2.0
 var john = {
     name: 'John',
     lastName: 'Smith', 
@@ -170,7 +170,43 @@ var mike = {
 
 mike.calculateAge();
 console.log(mike);
+*/
 
+
+/*---------------*/
+//-----Loops-----//
+/*---------------*/
+
+for (var i =0 ; i <10 ; i++) {
+    console.log(i);
+}
+
+var names = ['John', 'Jane', 'Mary', 'Mark', 'Bob'];
+
+
+//-------FOR LOOPS 
+for (var i = 0; i < names.length ; i++) {
+    console.log(names[i]);
+}
+
+for (var i = names.length - 1 ; i >= 0 ; i--) {
+    console.log(names[i]);
+}
+
+//-------WHILE LOOPS
+var i =0;
+while (i < names.length) {
+    console.log(names[i]);
+    i++;
+}
+
+//The following will NOT print 3
+for (var i = 1; i <= 5 ; i++) {
+    if (i === 3) { 
+        continue;
+    }
+    console.log(i); 
+}
 
 
 
