@@ -78,7 +78,7 @@ if (john.indexOf('teacher') === -1) {
 /*-------*/
 //Objects//
 /*-------*/
-
+/*
 var john = {
     name: 'John',
     lastName: 'Smith', 
@@ -106,14 +106,70 @@ jane['job'] = 'retired';
 jane['isMarried'] = true;
 
 console.log(jane);
+*/
+
+/*-------------------*/
+//Objects and Methods//
+/*-------------------*/
+
+/* v 1.0
+var john = {
+    name: 'John',
+    lastName: 'Smith', 
+    yearOfBirth: 1990, 
+    job: 'teacher', 
+    isMarried: false,
+    family: ['Jane', 'Mark', 'Bob'], 
+    //The following is a function expression
+    calculateAge: function(yearOfBirth) {
+        return 2016 - this.yearOfBirth;
+    }
+};
+
+//console.log(john.calculateAge(1990));
+console.log(john.calculateAge());
+
+var age = john.calculateAge();
+john.age = age;
+
+console.log(john);
+
+*/
 
 
+// v 2.0
+var john = {
+    name: 'John',
+    lastName: 'Smith', 
+    yearOfBirth: 1990, 
+    job: 'teacher', 
+    isMarried: false,
+    family: ['Jane', 'Mark', 'Bob'], 
+    //The following is a function expression
+    calculateAge: function() {
+        this.age = 2016 - this.yearOfBirth;
+    }
+};
+
+john.calculateAge();
+console.log(john);
 
 
+var mike = {
+    name: 'John',
+    lastName: 'Smith', 
+    yearOfBirth: 1950, 
+    job: 'teacher', 
+    isMarried: false,
+    family: ['Jane', 'Mark', 'Bob'], 
+    //The following is a function expression
+    calculateAge: function() {
+        this.age = 2016 - this.yearOfBirth;
+    }
+};
 
-
-
-
+mike.calculateAge();
+console.log(mike);
 
 
 
