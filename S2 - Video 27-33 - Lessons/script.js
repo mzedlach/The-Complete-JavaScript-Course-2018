@@ -32,7 +32,7 @@ console.log(age);
 /*-----------------*/
 /*-----Scoping-----*/
 /*-----------------*/
-
+/*
 // First scoping example
 var a = 'Hello!';
 first();
@@ -67,4 +67,48 @@ function third() {
     //console.log(c);
     console.log(a+d);
 }
+*/
+
+/*--------------*/
+/*-----THIS-----*/
+/*--------------*/
+
+//console.log(this);
+
+//calculateAge(1985);
+//
+//function calculateAge(year) {
+//    console.log(2016 - year);
+//    console.log(this);
+//}
+
+var john = {
+    name: 'John', 
+    yearOfBirth: 1990,
+    calculateAge: function() {
+        console.log(this);
+        console.log(2016 - this.yearOfBirth);
+        
+        //This is a regular function, so it defaults to the window object, NOT the John project.
+//        function innerFunction() {
+//            console.log(this);
+//        }
+//        innerFunction();
+    }
+}
+
+john.calculateAge();
+
+
+var mike = {
+    name: 'Mike', 
+    yearOfBirth: 1984
+};
+
+mike.calculateAge = john.calculateAge;
+mike.calculateAge();
+
+
+
+
 
