@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, lastDiceRoll;
 
 init(); 
 
@@ -22,16 +22,20 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png'; 
-
         //    Update the round score IF the rolled number is NOT a 1
-        if (dice !== 1) {
+        if (lastDiceRoll === 6 && dice === 6) {
+            scores[activePlayer] == 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        } else if (dice !== 1) {
             //Add score
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
-            //Next Player
+            //Next Player        
             nextPlayer();
         }
+        lastDiceRoll = dice;
     } 
 });
 
@@ -58,20 +62,20 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
 function nextPlayer() {
 //Next Player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        roundScore = 0;
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
 //        Both 'current' points will be set to zero
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-        
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
 //        document.querySelector('.player-0-panel').classList.remove('active');
 //        document.querySelector('.player-1-panel').classList.add('active');
-        
+
 //        Active player will switch. Other player gets grey background and red dot
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
 //        Dice will disappear
-        document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice').style.display = 'none';
 }
 
 //When the new game is clicked
