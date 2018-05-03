@@ -144,7 +144,7 @@ console.log(rates);
 /*-----------------------------------*/
 //---Functions Returning Functions---//
 /*-----------------------------------*/
-
+/*
 function interviewQuestion(job) {
     if (job === 'designer') {
         return function(name) {
@@ -171,7 +171,42 @@ designerQuestion('Mark');
 designerQuestion('Mike');
 
 interviewQuestion('teacher')('Mark');
+*/
 
+/*-----------------------------------------------------*/
+//---IIFE - Immediately Invoked Function Expressions---//
+/*-----------------------------------------------------*/
+
+
+//function game() {
+//    var score = Math.random() * 10; 
+//    console.log(score >= 5);
+//}
+//game();
+
+//THIS is an IIFE
+(function () {
+    var score = Math.random() * 10; 
+    console.log(score >= 5);
+})();
+
+//Without the parenthesis, the javascript parser with think that it is a function declaration
+//But, since we don't have a name for the function declaration, we have to trick the parser and make 
+//it believe that what we have here is an expression, not a declaration. 
+//Solution is to wrap the whole thing in parenthesis. JS treats anything in parenthesis as 
+//an expression, NOT declaration.
+//This also creates variable privacy for 'score'. It is NOT accessible outside of the function. 
+
+
+//console.log(score);
+//console log here would return undefined because the variable is not accessible. 
+
+(function (goodLuck) {
+    var score = Math.random() * 10; 
+    console.log(score >= 5 - goodLuck);
+})(5);
+
+//IIFE is used to create a function that will be REUSED. It is for data privacy. 
 
 
 
