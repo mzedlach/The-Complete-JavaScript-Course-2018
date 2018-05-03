@@ -149,6 +149,26 @@ i {
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
+#dice-1 { top: 100px; }
+#dice-2 { top: 230px; }
+
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+.winning-score {
+    position: absolute;
+    width: 200px;
+    top: 520px;
+    padding: 10px;
+    
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    
+    text-align: center;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.winning-score:focus { outline: none; }
