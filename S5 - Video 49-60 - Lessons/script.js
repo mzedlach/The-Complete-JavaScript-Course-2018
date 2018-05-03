@@ -176,8 +176,7 @@ interviewQuestion('teacher')('Mark');
 /*-----------------------------------------------------*/
 //---IIFE - Immediately Invoked Function Expressions---//
 /*-----------------------------------------------------*/
-
-
+/*
 //function game() {
 //    var score = Math.random() * 10; 
 //    console.log(score >= 5);
@@ -207,6 +206,53 @@ interviewQuestion('teacher')('Mark');
 })(5);
 
 //IIFE is used to create a function that will be REUSED. It is for data privacy. 
+*/
+
+/*--------------*/
+//---Closures---//
+/*--------------*/
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement';
+    return function(yearOfBirth) {
+        var age = 2016 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+
+retirementGermany(1990);
+retirementUS(1990);
+retirementIceland(1990);
+//retirement(66)(1990);
+
+
+//Additional Exercise - WOOO! GOT IT! :) 
+function interviewQuestion(job) {
+    
+    return function(name) {
+        if (job === 'designer') {
+            console.log(name + ', can you please explain what UX design is?')
+        } else if (job === 'teacher') {
+            console.log('What subject do you teach, ' + name + '?');
+        } else {
+            console.log('Hello ' + name + ', what do you do?');
+        }
+    }   
+};
+
+interviewQuestion('teacher')('Mark');
+interviewQuestion('designer')('John');
+interviewQuestion('')('Jane');
+
+
+
+
+
 
 
 
