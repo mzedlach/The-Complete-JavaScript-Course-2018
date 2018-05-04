@@ -9,6 +9,7 @@ var john = {
     job: 'teacher'
 };
 
+//This is the function constructor:
 var Person = function(name, yearOfBirth, job) {
     this.name = name;
     this.yearOfBirth = yearOfBirth;
@@ -21,6 +22,7 @@ Person.prototype.calculateAge = function() {
 
 Person.prototype.lastName = 'Smith';
 
+//These are used to create objects
 var john = new Person('John', 1990, 'teacher');
 var jane = new Person('Jane', 1969, 'designer');
 var mark = new Person('Mark', 1948, 'retired');
