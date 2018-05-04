@@ -23,6 +23,7 @@ c) correct answer (I would use a number for this)
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
 
+/*
 ( function() {
     
     function Question(question, answers, correct) {
@@ -42,7 +43,7 @@ c) correct answer (I would use a number for this)
     Question.prototype.checkAnswer = function(ans) {
         if (ans === this.correct) {
             console.log('Correct answer!');
-        } else if (this.correct = 'null') {
+        } else if (this.correct === 'no cake') {
             console.log('There is no cake. Sorry, the cake was a lie.')
         } else {
             console.log('Wrong Answer! Try again!');
@@ -51,7 +52,7 @@ c) correct answer (I would use a number for this)
 
     var q1 = new Question('What colour is the sky?', ['white', 'blue', 'pink'], 1);
     var q2 = new Question('How many eggs in a baker\'s dozen?', [12, 13, 24,], 1);
-    var q3 = new Question('Do you want some cake?', ['yes', 'no'], null);
+    var q3 = new Question('Do you want some cake?', ['yes', 'no'], 'no cake');
     var questions = [q1, q2, q3];
 
     var questionNumber = Math.floor(Math.random()*3);
@@ -63,6 +64,9 @@ c) correct answer (I would use a number for this)
 
     //console.log(questions[questionNumber].question);
 })();
+*/
+
+
 
 /*
 --- Expert level ---
@@ -75,3 +79,96 @@ c) correct answer (I would use a number for this)
 
 11. Display the score in the console. Use yet another method for this.
 */
+
+(function() {
+    
+    function Question(question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
+    }
+
+    //This is the Question method
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+        for (var i = 0; i < this.answers.length ; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+    //This is the method to check the answer
+    Question.prototype.checkAnswer = function(ans, callback) {
+        var currentScore; 
+        
+        if (ans === this.correct) {
+            console.log('Correct answer!');
+            currentScore = callback(true);
+        } else if (this.correct === 'no cake') {
+            console.log('There is no cake. Sorry, the cake was a lie.')
+            currentScore = callback(false);
+        } else {
+            console.log('Wrong Answer! Try again!');
+            currentScore = callback(false);
+        }
+        this.displayScore(currentScore);
+    }
+    
+    Question.prototype.displayScore = function(score) {
+        console.log('Your current score is: ' + score);
+        console.log('--------------------------------')
+    }
+    
+    //Keep Score
+    function score() {
+        var currentScore = 0;
+        return function(correct) {
+            if (correct) {
+                currentScore++;
+            }
+            return currentScore;
+        }
+    }
+    //To call the score function
+    var keepScore = score();
+
+    var q1 = new Question('What colour is the sky?', ['white', 'blue', 'pink'], 1);
+    var q2 = new Question('How many eggs in a baker\'s dozen?', [12, 13, 24,], 1);
+    var q3 = new Question('Do you want some cake?', ['yes', 'no'], 'no cake');
+
+    var questions = [q1, q2, q3];
+
+    
+    function nextQuestion() {
+        
+        var questionNumber = Math.floor(Math.random()*3);
+        questions[questionNumber].displayQuestion();
+
+        var answer = prompt('Please select the correct answer:');
+        
+        //Next question will ONLY be provided if tehre is an answer given, not 'exit'.
+        if(answer !== 'exit') {
+            questions[questionNumber].checkAnswer(parseInt(answer), keepScore);
+            
+            nextQuestion();
+        }
+    }
+    
+    //To generate a question for the first time
+    nextQuestion();
+    
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
