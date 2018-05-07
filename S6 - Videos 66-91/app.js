@@ -103,6 +103,22 @@ var UIController = (function() {
             // Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
+        // To clear all fields after data has been input into either one of the two lists
+        clearFields: function() {
+            var fields, fieldsArr;
+            // select inputDescription and inputValue, saved in variable 'fields'
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+            // querySelectorAll returns a LIST, so we have to use the call method which turns the fields into 'this'.  we use slice to trick the method by putting in a listand it returns an array
+            //fieldsArr is now an ARRAY
+            fieldsArr = Array.prototype.slice.call(fields);
+            // Loop through the fieldsArray and clears the data. 
+            fieldsArr.forEach(function(current, index, array) {
+                current.value = '';
+            });
+            // Brings the curser back to the input box
+            fieldsArr[0].focus();
+        },
+        
         getDOMstrings: function() {
             return DOMstrings;
         }
@@ -142,6 +158,8 @@ var controller = (function(budgetCtrl, UICtrl) {
         // Add the new item to the UI
         UICtrl.addListItem(newItem, input.type);
         
+        // Clear the fields (after data has been input)
+        UICtrl.clearFields();
         // Calculate the budget
         // Display the budget on the UI
     }
