@@ -164,6 +164,14 @@ var UIController = (function() {
             // Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
+        // To delete element from DOM
+        // To delete a child element, you have to target the parent element first and THEN removeChild.
+        deleteListItem: function(selectorID) {
+            
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
+            
+        },
         // To clear all fields after data has been input into either one of the two lists
         clearFields: function() {
             var fields, fieldsArr;
@@ -269,8 +277,10 @@ var controller = (function(budgetCtrl, UICtrl) {
             budgetCtrl.deleteItem(type, ID);
             
             // Delete the item from the UI
+            UICtrl.deleteListItem(itemID);
             
             // Update and show new budget totals
+            updateBudget();
         }
     };
     
