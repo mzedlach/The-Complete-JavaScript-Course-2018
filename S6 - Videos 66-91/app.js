@@ -79,7 +79,7 @@ var UIController = (function() {
             return {
                 type: document.querySelector(DOMstrings.inputType).value, //WIll be either inc or exp
                 description: document.querySelector(DOMstrings.inputDescription).value,
-                value: document.querySelector(DOMstrings.inputValue).value
+                value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
             };
         },
         addListItem: function(obj, type) {
@@ -145,24 +145,37 @@ var controller = (function(budgetCtrl, UICtrl) {
         });
     }
     
+    var updateBudget = function() {
+                
+        // Calculate the budget
+        
+        // Return the budget
+        
+        // Display the budget on the UI
+        
+    };
+    
 // Private function that adds an item
     var ctrlAddItem = function() {
         var input, newItem; 
         
         // Get field input data
         input = UICtrl.getInput();
-        
-        // Add the item to the budget controller
-        newItem = budgetCtrl.addItem(input.type, input.description, input.value)
-        
-        // Add the new item to the UI
-        UICtrl.addListItem(newItem, input.type);
-        
-        // Clear the fields (after data has been input)
-        UICtrl.clearFields();
-        // Calculate the budget
-        // Display the budget on the UI
-    }
+        // Check that description actually has data input, and that a number is also input (but not 0)
+        if (input.description !== '' && !isNaN(input.value) && input.value > 0 ) {
+            // Add the item to the budget controller
+            newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+
+            // Add the new item to the UI
+            UICtrl.addListItem(newItem, input.type);
+
+            // Clear the fields (after data has been input)
+            UICtrl.clearFields();
+
+            // Calculate and update budget
+            updateBudget();
+        }
+    };
     
     return {
         init: function() {
