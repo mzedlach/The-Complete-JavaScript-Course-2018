@@ -113,9 +113,7 @@ var budgetController = (function() {
         }
     };
     
-    
 })();
-
 
 //-----------------------//
 //-----UI CONTROLLER-----//
@@ -200,7 +198,6 @@ var UIController = (function() {
                 document.querySelector(DOMstrings.percentageLabel).textContent = '---';
             }
         },
-        
         getDOMstrings: function() {
             return DOMstrings;
         }
