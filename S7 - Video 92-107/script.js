@@ -14,8 +14,6 @@ let age6 = 23;
 name6 = 'Jane Miller';
 console.log(name6);
 
-*/
-
 
 // ES5
 function driversLicence5(passedTest) {
@@ -66,3 +64,99 @@ for (var i = 0 ; i < 5; i++) {
 
 console.log(i);
 //Output - 0, 1, 2, 3, 4, 5
+*/
+
+/*--------------------------*/
+/*-----Blocks and IIFEs-----*/
+/*--------------------------*/
+/*
+// ES6
+{
+    const a = 1;
+    let b = 2;
+    var c = 3;
+}
+
+console.log(a + b);
+// a is not defined
+console.log(c);
+// 3
+
+
+// ES5
+
+(function() {
+    var c = 3;
+})();
+
+
+console.log(c);
+//c is not defined
+*/
+
+/*-----------------*/
+/*-----Strings-----*/
+/*-----------------*/
+
+
+let firstName = 'John';
+let lastName = 'Smith';
+const yearOfBirth = 1990; 
+
+function calcAge(year) {
+    return 2016 - year;
+}
+
+// --- Template Literals --- // 
+
+// ES5
+console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today, he is ' + calcAge(yearOfBirth) + ' years old.');
+
+
+// ES6 
+console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(yearOfBirth)} years old.`)
+
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('th'));
+console.log(n.includes('oh'));
+console.log(`${firstName} `.repeat(5));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
