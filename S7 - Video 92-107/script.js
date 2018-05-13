@@ -276,7 +276,7 @@ console.log(retirement);
 /*-----Arrays-----*/
 /*----------------*/
 //New "FOR (--OF--)"
-
+/*
 const boxes = document.querySelectorAll('.box');
 
 
@@ -296,7 +296,6 @@ const boxesArr6 = Array.from(boxes);
 //Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'dodgerblue');
 
 //ES5
-/*
 for(var i = 0; i < boxesArr5.length; i++) {
     
     if(boxesArr5[i].className === 'box blue') {
@@ -304,7 +303,7 @@ for(var i = 0; i < boxesArr5.length; i++) {
     }
     boxesArr5[i].textContent = 'I changed to blue!';
 }
-*/
+
 
 // ES6
 for (const cur of boxesArr6) {
@@ -331,6 +330,54 @@ console.log(ages[full.indexOf(true)]);
 // ES6
 console.log(ages.findIndex(cur => cur >= 18));
 console.log(ages.find(cur => cur >= 18));
+*/
+
+/*-------------------------*/
+/*-----Spread Operator-----*/
+/*-------------------------*/
+
+function addFourAges (a, b, c , d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+// 81
+//If we want to put an array into teh addFourAges function:
+
+// ES5
+
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+// 81
+
+// ES6
+
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+
+
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+//To join these two arrays, you can use the spread operator "..."
+
+const bigFamily = [...familySmith, 'Lily', ...familyMiller];
+console.log(bigFamily);
+
+//Can also apply this on a Node List
+//We want to change all of the text of the heading and the boxes 
+//Target h1 elements and .box classes. Merge them together as a list in 'all'
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+
+//Iterate through 'all' elements array and change the font colour to purple. 
+Array.from(all).forEach(cur => cur.style.color = 'purple');
+
+
+
+
 
 
 
