@@ -172,7 +172,10 @@ var box5 = {
     }
 }
 box5.clickMe();
+//If you had 'this' in place of 'self', all these areas would return 'undefined'
+//We use 'var self = this' as a sort of hack
 */
+
 
 // ES6
 /*
@@ -187,6 +190,7 @@ const box6 = {
     }
 }
 box6.clickMe();
+//This returns everything correctly. The arrow functions maintains 'this' correctly. 
 */
 /*
 const box66 = {
@@ -200,7 +204,7 @@ const box66 = {
     }
 }
 box66.clickMe();
-//this becomes undefined 
+//this becomes undefined again
 */
 
 function Person(name) {
@@ -209,6 +213,7 @@ function Person(name) {
 
 // ES5
 Person.prototype.myFriends5 = function(friends) {
+    
     var arr = friends.map(function(el) {
         return this.name + ' is friends with ' + el;
     }.bind(this));
@@ -218,14 +223,13 @@ var friends = ['Bob', 'Jane', 'Mark'];
 new Person('John').myFriends5(friends);
 
 // ES6
-Person.prototype.myFriends5 = function(friends) {
-    var arr = friends.map(function(el) {
-        return this.name + ' is friends with ' + el;
-    }.bind(this));
+Person.prototype.myFriends6 = function(friends) {
+    var arr = friends.map( (el) => `${this.name} is friends with ${el}`);
     console.log(arr);
 }
-var friends = ['Bob', 'Jane', 'Mark'];
-new Person('John').myFriends5(friends);
+
+new Person('Mike').myFriends6(friends);
+
 
 
 
