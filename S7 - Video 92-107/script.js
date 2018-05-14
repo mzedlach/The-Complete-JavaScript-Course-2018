@@ -435,9 +435,8 @@ isFullAge6(16,1990, 1999, 1965, 2016, 1987);
 /*----------------------------*/
 /*-----Default parameters-----*/
 /*----------------------------*/
-
+/*
 // ES5
-
 function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
     
     lastName === undefined ? lastName = 'Smith' : lastName = lastName;
@@ -460,12 +459,48 @@ function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = '
 
 var john = new SmithPerson('John', 1990);
 var emily = new SmithPerson('Emily', 1983, 'Diaz', 'spanish');
+*/
+
+/*--------------*/
+/*-----Maps-----*/
+/*--------------*/
+
+const question = new Map();
+question.set('question', 'What is the official name of the latest major JavaScript version?')
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'Correct answer!');
+question.set(false, 'Wrong. Please try again!');
+
+//To show the quetsion in the console:
+console.log(question.get('question'));
+//To see how many items in the set --> Here it would be 8
+//console.log(question.size);
 
 
+if (question.has(4)) {
+//    question.delete(4);
+//    console.log('Answer 4 is here');
+}
+//question.clear();
 
+//To access all 
+//question.forEach((value, key) => console.log(`This is ${key} and it's set to ${value}`));
 
+//Just as the forEach, we can also do this: (This also works for arrays)
+//the following will return all entries of the question map
+for (let [key, value] of question.entries()) {
+//    console.log(`This is ${key} and it's set to ${value}`)
+    if (typeof(key) === 'number') {
+        console.log(`Answer ${key}: ${value}`)
+    }
+}
 
-
+const ans = parseInt(prompt('Write the correct numfor the answer'));
+console.log(question.get(ans === question.get('correct')));
 
 
 
