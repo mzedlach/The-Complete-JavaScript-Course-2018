@@ -25,26 +25,93 @@
 //
 //         first();
         
-        function getRecipe() {
-            setTimeout(() => {
-                const recipeID = [523, 833, 432, 974];
-                console.log(recipeID);
-                
-                setTimeout(id => {
-                    const recipe = { title: 'Fresh tomato pasta', publisher: 'Maria'};
-                    console.log(`${id}: ${recipe.title}`);
-                    
-                    setTimeout(publisher => {
-                         const recipe2 = {title: 'Italian Pizza', publisher: 'Jonas'};
-                         console.log(recipe);
-                     }, 1500, recipe.publisher);
-
-                 }, 1500, recipeID[2]);
-
-             }, 1500);
-         }
-         getRecipe();
+//        function getRecipe() {
+//            //Timeout function here is to simulate the delay of getting id's from server (similar the ajax call)
+//            setTimeout(() => {
+//                const recipeID = [523, 833, 432, 974];
+//                console.log(recipeID);
+//                //Once data comes back from server, this is the simulated delay for getting info for ONE recipe
+//                setTimeout(id => {
+//                    const recipe = { title: 'Fresh tomato pasta', publisher: 'Maria'};
+//                    console.log(`${id}: ${recipe.title}`);
+//                    
+//                    setTimeout(publisher => {
+//                         const recipe2 = {title: 'Italian Pizza', publisher: 'Jonas'};
+//                         console.log(recipe);
+//                     }, 1500, recipe.publisher);
+//
+//                 }, 1500, recipeID[2]);
+//
+//             }, 1500);
+//         }
+//         getRecipe();
         
+        
+        const getIDs = new Promise((resolve, reject) => {
+            //setTimeout used to simulate ajax call (server request for info)
+            setTimeout(() => {
+                resolve([523, 833, 432, 974]);
+            }, 1500);
+        });
+        
+        const getRecipe = recID => {
+            return new Promise((resolve, reject) => {
+                setTimeout(ID => {
+                    const recipe = { title: 'Fresh tomato pasta', publisher: 'Maria'};
+                resolve(`${ID}: ${recipe.title}`);
+                }, 1599, recID);
+            });
+        };
+        
+        const getRelated = publisher => {
+            return new Promise((resolve, reject) => {
+                setTimeout(pub => {
+                    const recipe = {title: 'Italian Pizza', publisher: 'Jonas'};
+                    resolve(`${pub}: ${recipe.title}`);
+                }, 1500, publisher);
+            });
+        };
+        //then method allows us to add an event handler for the case if the promis is successful.
+        getIDs
+        .then(IDs => {
+            console.log(IDs);
+            return getRecipe(IDs[2]);
+        })
+        .then(recipe => {
+            console.log(recipe);
+            return getRelated('Maria');
+        })
+        .then(recipe => {
+            console.log(recipe);
+        })
+        .catch(error => {
+            console.log('Error!');
+        });
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
