@@ -1,9 +1,15 @@
-import str from './models/Search' ;
-// import { add, multiply, id } from './views/searchView' ; 
-// console.log(`Using imported functions! ${add(id, 2)} and ${multiply(3, 5)}, ${str}`);
+import axios from 'axios';
 
-// import { add as a, multiply as m , id } from './views/searchView' ; 
-// console.log(`Using imported functions! ${a(id, 2)} and ${m(3, 5)}, ${str}`);
-
-import * as searchView from './views/searchView';
-console.log(`Using imported functions! ${searchView.add(searchView.id, 2)} and ${searchView.multiply(3, 5)}, ${str}`);
+async function getResults(query) {
+  const proxy = 'https://cors-anywhere.herokuapp.com/';
+  const key = 'cc0ab89c8d7d6c05b01c6ab5c1a43102'
+  try {
+    const res = await axios(`${proxy}https://www.food2fork.com/api/search?key=${key}&q=${query}`);
+    const recipes = res.data.recipes;
+    console.log(recipes);
+  } catch (error) {
+    alert(error);
+  }
+  
+}
+getResults('tomato pasta');
