@@ -11,6 +11,7 @@ export default class Search {
     const key = 'cc0ab89c8d7d6c05b01c6ab5c1a43102'
     try {
       const res = await axios(`${proxy}https://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
+      //The actual results are saved here: originally in state.search.recipes
       this.result = res.data.recipes;
       // console.log(this.result);
     } catch (error) {
