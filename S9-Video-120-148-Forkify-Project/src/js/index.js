@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -11,6 +12,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 //This is set so that the state will start empty when the page loads. 
 const state = {};
 
+// SEARCH CONTROLLER // 
 const controlSearch = async () => {
   // 1) Fetch info from getInput (in searchView.js) and assign it to variable 'query'
   const query = searchView.getInput();
@@ -49,3 +51,9 @@ elements.searchResPages.addEventListener('click', e => {
     
   };
 });
+
+// RECIPE CONTROLLER //
+
+const r = new Recipe(47746); 
+r.getRecipe();
+console.log(r);
