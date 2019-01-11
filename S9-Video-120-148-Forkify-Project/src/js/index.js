@@ -38,3 +38,14 @@ elements.searchForm.addEventListener('submit', e => {
   controlSearch(); 
 });
 
+elements.searchResPages.addEventListener('click', e => {
+  const btn = e.target.closest('.btn-inline');
+  if (btn) {
+    // get value of the dataset goto and assign it to goToPage
+    const goToPage = parseInt(btn.dataset.goto, 10);
+    //clear previous resutls so next page can be show in their place
+    searchView.clearResults();
+    searchView.renderResults(state.search.result, goToPage);
+    
+  };
+});

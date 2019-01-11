@@ -3,9 +3,14 @@ import { elements } from './base';
 //Get actual input of text written in search box
 export const getInput = () => elements.searchInput.value;
 //Clear text in search box
-export const clearInput = () => { elements.searchInput.value = '' };
+export const clearInput = () => { 
+  elements.searchInput.value = '' 
+};
 //Clear all previous results in left panel
-export const clearResults = () => { elements.searchResultList.innerHTML = ''; };
+export const clearResults = () => { 
+  elements.searchResultList.innerHTML = ''; 
+  elements.searchResPages.innerHTML = '';
+};
 
 
 /*
@@ -53,10 +58,10 @@ const renderRecipe = recipe => {
 // type: 'prev' or 'next' 
 const createButton = (page, type) =>  `
     <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page-1 : page+1}>
-        <svg class="search__icon">
-            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
-        </svg>
-        <span>Page ${type === 'prev' ? page-1 : page+1}</span>
+      <span>Page ${type === 'prev' ? page-1 : page+1}</span>
+      <svg class="search__icon">
+        <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+      </svg>
     </button>
 `;
 
