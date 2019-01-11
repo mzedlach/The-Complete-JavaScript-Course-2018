@@ -26,12 +26,18 @@ const controlSearch = async () => {
     searchView.clearResults();
     renderLoader(elements.searchRes);
 
-    // 4) Search for recipes from API call. This will wait until results are returned. 
-    await state.search.getResults();
-    
-    // 5) Render results on UI 
-    clearLoader();
-    searchView.renderResults(state.search.result);
+    try {
+      // 4) Search for recipes from API call. This will wait until results are returned. 
+      await state.search.getResults();
+      
+      // 5) Render results on UI 
+      clearLoader();
+      searchView.renderResults(state.search.result);
+
+    } catch (err) {
+      alert('Something went wront with the search...');
+      clearLoader();
+    }
   }
 }
 
@@ -54,6 +60,38 @@ elements.searchResPages.addEventListener('click', e => {
 
 // RECIPE CONTROLLER //
 
-const r = new Recipe(47746); 
-r.getRecipe();
-console.log(r);
+// const r = new Recipe(47746); 
+// r.getRecipe();
+// console.log(r);
+
+const controlRecipe = async () => {
+  // Get ID from url
+  const id = window.location.hash.replace('#','');
+  // console.log(id);
+
+  if (id) {
+    // Prepare UI for changes
+
+    // Create new recipe object
+    state.recipe = new Recipe(id);
+
+    try {
+      // Get recipe data
+      await state.recipe.getRecipe();
+
+      // Calculate servings and time for prepareation - functions in Recipe.js
+      state.recipe.calcTime();
+      state.recipe.calcServings();
+
+      // Render Recipe
+      console.log(state.recipe);
+    } catch (err) {
+      alert('Error processing recipe!');
+    }
+  }
+};
+
+// window.addEventListener('hashchange', controlRecipe);
+// window.addEventListener('load', controlRecipe);
+//Can compress above two lines into one line like this:
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
