@@ -148,11 +148,6 @@ elements.shopping.addEventListener('click', e => {
 });
 
 // LIKE CONTROLLER //
-// Next line for testing only 
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
-
-
 const controlLike = () => {
   //If there is no like state yet, we want to make a new one
   if (!state.likes) state.likes = new Likes();
@@ -185,6 +180,16 @@ const controlLike = () => {
   likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+// Restore liked recipes on page load
+window.addEventListener('load', () => {
+  state.likes = new Likes();
+  // Restore likes 
+  state.likes.readStorage();
+  // Toggle like menu button. If there are likes, the button will be visible
+  likesView.toggleLikeMenu(state.likes.getNumLikes());
+  // Render the existing likes
+  state.likes.likes.forEach(like => likesView.renderLike(like));
+});
 
 // Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
