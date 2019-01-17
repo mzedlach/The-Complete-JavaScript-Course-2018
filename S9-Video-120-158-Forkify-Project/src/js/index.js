@@ -19,8 +19,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 
 //This is set so that the state will start empty when the page loads. 
 const state = {};
-//FOR TESTING PURPOSES 
-window.state = state ; 
 
 // SEARCH CONTROLLER // 
 const controlSearch = async () => {
@@ -72,12 +70,10 @@ elements.searchResPages.addEventListener('click', e => {
 
 // const r = new Recipe(47746); 
 // r.getRecipe();
-// console.log(r);
 
 const controlRecipe = async () => {
   // Get ID from url
   const id = window.location.hash.replace('#','');
-  // console.log(id);
 
   if (id) {
     // Prepare UI for changes
@@ -211,5 +207,3 @@ elements.recipe.addEventListener('click', e => {
     controlLike();
   }
 });
-
-window.l = new List();
